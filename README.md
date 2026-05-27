@@ -30,7 +30,7 @@ Outside cmux/Chrome, the keys (other than `2`) pass through unchanged.
 
 A native macOS terminal designed for running multiple coding agents in parallel. It has vertical tabs, split panes, notification rings when an agent wants attention, an embedded scriptable browser, and a socket API — built on libghostty's renderer. The macropad bindings drive its tab/pane navigation:
 
-- **Ctrl+Cmd+[ / ]** — previous / next tab
+- **Ctrl+Cmd+[ / ]** — previous / next workspace
 - **Cmd+Opt+arrows** — move focus between split panes
 
 Holding Cmd on the main keyboard and twirling the encoder gives a tactile Cmd+Tab — handy when you live in cmux but need to flick to another app for a second.
