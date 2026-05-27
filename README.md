@@ -69,6 +69,45 @@ A macOS app for transcribing audio with OpenAI Whisper models, locally on your M
 
 4. **Configure MacWhisper** (optional): in its preferences, bind the dictation / push-to-talk shortcut to **F18**.
 
+## RGB backlight control
+
+The 4 buttons have addressable backlight LEDs. (The knob doesn't.) The firmware uses the same wire protocol as the `k884x` family from [kriomant/ch57x-keyboard-tool](https://github.com/kriomant/ch57x-keyboard-tool), but on macOS we can't claim the USB interface via libusb because IOHIDFamily owns it — so [`set_led.py`](set_led.py) talks to the vendor-specific HID interface directly using `hidapi`.
+
+### Setup
+
+```sh
+brew install hidapi
+python3 -m venv .venv
+.venv/bin/pip install hid
+```
+
+### Usage
+
+```sh
+.venv/bin/python set_led.py off                  # all LEDs off
+.venv/bin/python set_led.py backlight blue       # always-on blue
+.venv/bin/python set_led.py backlight white      # always-on white
+.venv/bin/python set_led.py press red            # only lights pressed key
+.venv/bin/python set_led.py shock cyan           # "shock" effect on press
+.venv/bin/python set_led.py shock2 green         # alternate shock effect
+```
+
+**Modes:** `off`, `backlight`, `press`, `shock`, `shock2`.
+**Colors:** `red`, `orange`, `yellow`, `green`, `cyan`, `blue`, `purple` (looks more pink), plus `white` (backlight mode only).
+
+The wire format (for reference):
+
+```
+program LED:    03 fe b0 <layer+1> 08 00 00 00 00 00 01 00 <code>   (pad to 64 bytes)
+commit:         03 fd fe ff                                          (pad to 64 bytes)
+
+code = (color << 4) | mode
+modes:   0=off  1=backlight-colour  2=shock  3=shock2  4=press  5=backlight-white
+colours: 1=red  2=orange  3=yellow  4=green  5=cyan  6=blue  7=purple
+```
+
+Sent as HID output reports (report ID `0x00`) to the vendor-specific interface (UsagePage `0xFF00`, endpoint `0x02 OUT`).
+
 ## Adapting to a different macropad
 
 If your macropad reports a different VID/PID, you'll need to update them in `macropad.json`. To find yours:
