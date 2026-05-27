@@ -4,7 +4,7 @@ Karabiner-Elements rules for a cheap USB macropad (4 keys + a rotary encoder), w
 
 ![Fafeicy 4-key macropad with rotary encoder](macropad.jpg)
 
-The hardware is the [Fafeicy 4 Key 1 Knob Programmable Macro Keypad](https://www.amazon.com.au/Fafeicy-Keyboard-Programmable-Switches-Productivity/dp/B0FZCGX42T/) (~AU$20 on Amazon AU) — blue mechanical switches, RGB lighting, and a clicky rotary encoder.
+The hardware is the [Fafeicy 4 Key 1 Knob Programmable Macro Keypad](https://www.amazon.com.au/Fafeicy-Keyboard-Programmable-Switches-Productivity/dp/B0FZCGX42T/) (~AU$20 on Amazon AU) — blue mechanical switches and a clicky rotary encoder.
 
 It reports as a USB keyboard with VID `20812` / PID `34897`.
 
