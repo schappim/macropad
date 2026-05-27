@@ -108,6 +108,8 @@ colours: 1=red  2=orange  3=yellow  4=green  5=cyan  6=blue  7=purple
 
 Sent as HID output reports (report ID `0x00`) to the vendor-specific interface (UsagePage `0xFF00`, endpoint `0x02 OUT`).
 
+**No brightness / PWM:** the firmware on this device only exposes the 7 named colors plus white, with no intensity control. The related K8850 (PID `0x8850`, 16 keys) has a different firmware that supports full per-key RGB ([upstream PR #175](https://github.com/kriomant/ch57x-keyboard-tool/pull/175)) — that protocol does *not* work on this 4-key 0x8851 variant. Host-side PWM toggling via HID writes is too coarse to look smooth (firmware applies updates well below flicker fusion), so brightness pulsing isn't practical here.
+
 ## Adapting to a different macropad
 
 If your macropad reports a different VID/PID, you'll need to update them in `macropad.json`. To find yours:
