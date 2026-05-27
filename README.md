@@ -6,21 +6,33 @@ Karabiner-Elements rules for a cheap USB macropad (4 keys + a rotary encoder), w
 
 The hardware is the [Fafeicy 4 Key 1 Knob Programmable Macro Keypad](https://www.amazon.com.au/Fafeicy-Keyboard-Programmable-Switches-Productivity/dp/B0FZCGX42T/) (~AU$20 on Amazon AU) — blue mechanical switches, RGB lighting, and a clicky rotary encoder.
 
-It reports as a USB keyboard with VID `20812` / PID `34897`. Its 4 buttons send `a` / `b` / `c` / `d`; the rotary encoder sends `1` (CCW) and `3` (CW); a centre press on the encoder sends `2`.
+It reports as a USB keyboard with VID `20812` / PID `34897`.
+
+## Hardware layout
+
+| Physical input | Sends keycode |
+|---|---|
+| Encoder rotated left (CCW) | `1` |
+| Encoder pressed (push-down) | `2` |
+| Encoder rotated right (CW) | `3` |
+| Top key of the T-cluster | `a` |
+| Left key | `b` |
+| Bottom key | `c` |
+| Right key | `d` |
 
 ## What it does
 
 | Macropad input | Global | In cmux.app | In Chrome |
 |---|---|---|---|
-| Encoder CCW (`1`) | — | Ctrl+Cmd+[ | Page Up |
-| Centre press (`2`) | **F18** (→ MacWhisper) | F18 | F18 |
-| Encoder CW (`3`) | — | Ctrl+Cmd+] | Page Down |
-| Button `a` | — | Cmd+Opt+Up | — |
-| Button `b` | — | Cmd+Opt+Left | — |
-| Button `c` | — | Cmd+Opt+Down | — |
-| Button `d` | — | Cmd+Opt+Right | — |
-| Cmd held + encoder CCW | Cmd+Shift+Tab (app switcher back) | | |
-| Cmd held + encoder CW | Cmd+Tab (app switcher forward) | | |
+| Encoder CCW (`1`) | — | Previous workspace (Ctrl+Cmd+[) | Page Up |
+| Centre press (`2`) | **F18** → MacWhisper dictation | F18 | F18 |
+| Encoder CW (`3`) | — | Next workspace (Ctrl+Cmd+]) | Page Down |
+| Button `a` | — | Focus pane up (Cmd+Opt+↑) | — |
+| Button `b` | — | Focus pane left (Cmd+Opt+←) | — |
+| Button `c` | — | Focus pane down (Cmd+Opt+↓) | — |
+| Button `d` | — | Focus pane right (Cmd+Opt+→) | — |
+| Cmd held + encoder CCW | Previous app in switcher (Cmd+Shift+Tab) | | |
+| Cmd held + encoder CW | Next app in switcher (Cmd+Tab) | | |
 
 Outside cmux/Chrome, the keys (other than `2`) pass through unchanged.
 
